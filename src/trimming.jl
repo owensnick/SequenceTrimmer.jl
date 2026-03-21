@@ -387,8 +387,7 @@ function trim_fastq_threads(fq_R1, fq_R2, align_length=20, max_distance=1, misma
         (rn1 == 0) && break
 
         ### Threaded trimming of the block
-        #Threads.@threads
-        for i = 1:rn1
+        Threads.@threads for i = 1:rn1
             trim_data[1, i], trim_data[2, i] = trim_reads(datablock_R1[i], datablock_R2[i], L_match, R_match, align_length, max_distance, mismatch_rate, max_n)
         end
 
