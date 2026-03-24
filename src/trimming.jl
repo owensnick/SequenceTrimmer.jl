@@ -235,10 +235,19 @@ function find_adapt_location(seq1, seq2, L_match, R_match, thresh=3 / 13, tail=7
         amm = 0
         bmm = 0
 
-        loop_len = min(min_p, n - i + 1)
-        for j = 1:loop_len
-            amm += ifelse((seq1[i+j-1] != L_match[j]), 1, 0)
-            bmm += ifelse((seq2[i+j-1] != R_match[j]), 1, 0)
+        try
+            loop_len = min(min_p, n - i + 1)
+            for j = 1:loop_len
+                amm += ifelse((seq1[i+j-1] != L_match[j]), 1, 0)
+                bmm += ifelse((seq2[i+j-1] != R_match[j]), 1, 0)
+            end
+        catch err
+            @show seq1
+            @show seq2
+            @show n
+            @show L_match
+            @show R_match
+            throw(err)
         end
 
         if 0.5 * (amm + bmm) / loop_len < thresh
