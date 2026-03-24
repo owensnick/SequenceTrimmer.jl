@@ -29,7 +29,7 @@ function write_block(io, data, rn, trim_data)
         write(io, data[i][1], "\n")
         write(io, trimdata(data[i][2], trim_data[2, i]), "\n")
         write(io, data[i][3], "\n")
-        write(io, trimdata(data[i][4], trime_data[2, i]), "\n")
+        write(io, trimdata(data[i][4], trim_data[2, i]), "\n")
     end
 end
 
