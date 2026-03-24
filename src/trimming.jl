@@ -17,6 +17,8 @@ function read_block!(io, data::Vector{Vector{String}}, blocksize=length(data))
 end
 
 
+trimdata(data, n) = @view data[1:min(length(data), n)]
+
 """
     Write a block of fastq reads from Vector{String}[]
     Writes trimmed sequence and quality string
@@ -25,9 +27,9 @@ function write_block(io, data, rn, trim_data)
     for i = 1:rn
         ind = 1:trim_data[2, i]
         write(io, data[i][1], "\n")
-        write(io, data[i][2][ind], "\n")
+        write(io, trimdata(data[i][2], trim_data[2, i]), "\n")
         write(io, data[i][3], "\n")
-        write(io, data[i][4][ind], "\n")
+        write(io, trimdata(data[i][4], trime_data[2, i]), "\n")
     end
 end
 
