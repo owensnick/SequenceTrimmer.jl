@@ -225,7 +225,7 @@ end
     Find the adapter location within a sequence upto a mismatch threshold
 """
 function find_adapt_location(seq1, seq2, L_match, R_match, thresh=3 / 13, tail=7)
-    n = length(seq1)
+    n = min(length(seq1), length(seq2))
     amm = 0
     bmm = 0
 
